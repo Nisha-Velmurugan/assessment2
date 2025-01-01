@@ -24,5 +24,11 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('List Backend Directory') {
+            steps {
+                sh 'ls -la backend'
+            }
+        }
+
     }
 }

@@ -1,34 +1,17 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'nodejs-20.18.1'
-    }
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Nisha-Velmurugan/assessment2.git'
+                checkout scm
             }
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                dir('backend') {
+                    sh 'npm install'
+                }
             }
         }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
-        stage('List Backend Directory') {
-            steps {
-                sh 'ls -la backend'
-            }
-        }
-
     }
 }
